@@ -20,7 +20,7 @@ class FaqAdapter(private val callback: FaqCallback) :
         fun bind(dataFaq: FaqEntity) {
             with(binding) {
                 tvQuestion.text = dataFaq.questions
-                tvQuestion.text = dataFaq.answerFaq
+                tvAnswer.text = dataFaq.answerFaq
 
                 cardItem.setOnClickListener {
                     callback.onItemClicked(dataFaq)

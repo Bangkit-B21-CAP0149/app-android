@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.arjuna.capstoneproject.R
 import com.arjuna.capstoneproject.databinding.ActivityMainBinding
+import com.arjuna.capstoneproject.ui.faq.FaqFragment
 import com.arjuna.capstoneproject.ui.home.HomeFragment
 import com.arjuna.capstoneproject.ui.news.NewsFragment
 import com.arjuna.capstoneproject.ui.profile.ProfileFragment
@@ -21,15 +22,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        if (savedInstanceState==null) {
+        if (savedInstanceState == null) {
             loadFragment(HomeFragment())
         }
 
         binding.bottomNav.setOnNavigationItemSelectedListener {
-            when(it.itemId) {
+            when (it.itemId) {
                 R.id.home_nav -> loadFragment(HomeFragment())
                 R.id.news_nav -> loadFragment(NewsFragment())
                 R.id.profile_nav -> loadFragment(ProfileFragment())
+                R.id.faq_nav -> loadFragment(FaqFragment())
                 R.id.report_nav -> {
                     val intent = Intent(Intent(this@MainActivity, ReportActivity::class.java))
                     startActivity(intent)
