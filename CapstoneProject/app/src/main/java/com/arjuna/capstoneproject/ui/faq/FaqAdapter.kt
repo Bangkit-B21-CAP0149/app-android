@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.arjuna.capstoneproject.data.local.entity.FaqEntity
 import com.arjuna.capstoneproject.databinding.FaqListItemBinding
 
-class FaqAdapter(private val callback: FaqCallback) :
+class FaqAdapter() :
     RecyclerView.Adapter<FaqAdapter.ViewHolder>() {
     private val listDataFaq = ArrayList<FaqEntity>()
     fun setDataFaq(dataFaq: List<FaqEntity>?) {
@@ -21,10 +21,10 @@ class FaqAdapter(private val callback: FaqCallback) :
             with(binding) {
                 tvQuestion.text = dataFaq.questions
                 tvAnswer.text = dataFaq.answerFaq
-
-                cardItem.setOnClickListener {
-                    callback.onItemClicked(dataFaq)
-                }
+//
+//                cardItem.setOnClickListener {
+//                    callback.onItemClicked(dataFaq)
+//                }
             }
         }
     }

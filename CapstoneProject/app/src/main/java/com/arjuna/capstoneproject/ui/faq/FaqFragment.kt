@@ -12,7 +12,7 @@ import com.arjuna.capstoneproject.data.local.entity.FaqEntity
 import com.arjuna.capstoneproject.databinding.FragmentFaqBinding
 
 
-class FaqFragment : Fragment(), FaqCallback {
+class FaqFragment : Fragment(){
     private lateinit var viewModel: FaqViewModel
     private val binding: FragmentFaqBinding by lazy {
         FragmentFaqBinding.inflate(layoutInflater)
@@ -38,7 +38,7 @@ class FaqFragment : Fragment(), FaqCallback {
         val listofFaq = viewModel.getListFaq()
         binding.rvFaq.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = FaqAdapter(this@FaqFragment)
+            adapter = FaqAdapter()
             setHasFixedSize(true)
         }.also {
             it.adapter.let { adapter ->
@@ -53,9 +53,6 @@ class FaqFragment : Fragment(), FaqCallback {
     }
 
 
-    override fun onItemClicked(dataFaq: FaqEntity) {
-        TODO("Not yet implemented")
-    }
 
 
 }

@@ -37,30 +37,6 @@ object FaqDummy {
                 answerFaq = "Jawab : Data laporan bersifat privat, hanya pihak Kementrian PPPA saja yang bisa melihat untuk keperluan penindak lanjut laporan",
             )
         )
-
-        listDataFaq.add(
-            FaqEntity(
-                id = 5,
-                questions = "Pertanyaan 5",
-                answerFaq = "Jawaban 5",
-            )
-        )
-
-        listDataFaq.add(
-            FaqEntity(
-                id = 6,
-                questions = "Pertanyaan 6",
-                answerFaq = "Jawaban 6",
-            )
-        )
-
-        listDataFaq.add(
-            FaqEntity(
-                id = 7,
-                questions = "Pertanyaan 7",
-                answerFaq = "Jawaban 7",
-            )
-        )
         return listDataFaq
     }
 }
