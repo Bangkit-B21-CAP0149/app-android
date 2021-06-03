@@ -1,6 +1,9 @@
 <resources>
-    <string name="app_name">CapstoneProject</string>
+    <string name="app_name">SAPA</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="web_client_id">804441368010-lbjks7lqtssh9b128k930pp8s3029vab.apps.googleusercontent.com</string>
+    <string name="profile_quote">
+        "Kesehatan mentalmu adalah prioritas. Kebahagiaanmu adalah penting. Perawatan dirimu adalah suatu kebutuhan."
+    </string>
 </resources>

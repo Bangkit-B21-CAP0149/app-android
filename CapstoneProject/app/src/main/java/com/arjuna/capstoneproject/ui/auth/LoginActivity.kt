@@ -4,22 +4,22 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.arjuna.capstoneproject.R
 import com.arjuna.capstoneproject.databinding.ActivityLoginBinding
 import com.arjuna.capstoneproject.ui.main.MainActivity
+import com.arjuna.capstoneproject.utils.Status
 import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
-import com.google.android.gms.common.api.GoogleApiClient
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.*
 
 class LoginActivity : AppCompatActivity() {
 
     private val firebaseAuth = FirebaseAuth.getInstance()
+
+    private val viewModel: LoginViewModel by viewModels()
 
     private val binding: ActivityLoginBinding by lazy {
         ActivityLoginBinding.inflate(layoutInflater)
@@ -32,22 +32,26 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        supportActionBar?.title = "Login"
+
         if (firebaseAuth.currentUser != null) {
             val intent = Intent(this@LoginActivity, MainActivity::class.java)
             startActivity(intent)
             finish()
         }
 
+        observeLoading()
+
         binding.btnLogin.setOnClickListener {
 
             val email = binding.edtEmail.text.toString()
             val password = binding.edtPassword.text.toString()
-            if (email.isNullOrEmpty()) {
+            if (email.isEmpty()) {
                 binding.edtEmail.error = "This field can not be blank"
                 binding.edtEmail.requestFocus()
                 return@setOnClickListener
             }
-            if (password.isNullOrEmpty()) {
+            if (password.isEmpty()) {
                 binding.edtPassword.error = "This field can not be blank"
                 binding.edtPassword.requestFocus()
                 return@setOnClickListener
@@ -75,6 +79,7 @@ class LoginActivity : AppCompatActivity() {
                 account?.idToken?.let { signInWithGoogle(it) }
             } catch (e: Exception) {
                 Log.d("ActivityResult", "authWithGoogle: failed", e)
+                Toast.makeText(this, "Failed!", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -101,34 +106,43 @@ class LoginActivity : AppCompatActivity() {
                     startActivity(intent)
                     finish()
                 } else {
-                    Log.w("FirebaseAuth", "signInWithEmail:failure", it.exception);
+                    Log.w("FirebaseAuth", "signInWithEmail:failure", it.exception)
                     Toast.makeText(
                         applicationContext, "Authentication failed.",
                         Toast.LENGTH_SHORT
-                    ).show();
+                    ).show()
                 }
             }
     }
 
     private fun loginFlow(email: String, password: String) {
+        viewModel.loginWithEmail(email, password)
+        observeLoginWithEmail()
+    }
 
-        firebaseAuth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    val user = firebaseAuth.currentUser
-                    user?.let { it -> firebaseAuth.updateCurrentUser(it) }
-                    Log.d("FirebaseAuth", "signInWithEmail: success")
-                    val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                } else {
-                    Log.w("FirebaseAuth", "signInWithEmail:failure", task.exception);
-                    Toast.makeText(
-                        applicationContext, "Authentication failed.",
-                        Toast.LENGTH_SHORT
-                    ).show();
+    private fun observeLoginWithEmail() {
+        viewModel.authStatus.observe(this, { status ->
+            status?.let {
+                when (it) {
+                    is Status.Success -> {
+                        val intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }
+                    is Status.Failure -> {
+                        Log.e("TAG", it.message)
+                        Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
+                        binding.btnLogin.text = "Login"
+                    }
                 }
             }
+        })
+    }
+
+    private fun observeLoading() {
+        viewModel.isLoading.observe(this, {
+            binding.btnLogin.text = if (it) "Authenticating..." else "Login"
+        })
     }
 
 }

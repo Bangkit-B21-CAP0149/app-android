@@ -9,6 +9,9 @@ import android.view.ViewGroup
 import com.arjuna.capstoneproject.R
 import com.arjuna.capstoneproject.databinding.FragmentProfileBinding
 import com.arjuna.capstoneproject.ui.auth.LoginActivity
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 
 class ProfileFragment : Fragment() {
@@ -33,6 +36,12 @@ class ProfileFragment : Fragment() {
 
             btnLogout.setOnClickListener {
                 firebaseAuth.signOut()
+                val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                    .requestIdToken(getString(R.string.default_web_client_id))
+                    .requestEmail()
+                    .build()
+
+                GoogleSignIn.getClient(requireContext(), gso).signOut()
                 val intent = Intent(requireContext(), LoginActivity::class.java)
                 startActivity(intent)
                 requireActivity().finish()

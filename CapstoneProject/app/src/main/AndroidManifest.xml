@@ -10,10 +10,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
         android:theme="@style/Theme.CapstoneProject">
-        <activity android:name=".ui.report.ReportActivity"></activity>
+        <activity android:name=".ui.report.ReportActivity"/>
         <activity android:name=".ui.auth.RegisterActivity" />
-        <activity android:name=".ui.profile.ProfileActivity" />
         <activity android:name=".ui.auth.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,7 +22,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.news.NewsDetailActivity" />
-        <activity android:name=".ui.report.MessageActivity" />
         <activity android:name=".ui.main.MainActivity" />
     </application>
 

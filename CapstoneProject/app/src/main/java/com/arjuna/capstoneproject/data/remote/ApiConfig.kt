@@ -20,4 +20,13 @@ object ApiConfig {
             .build()
         return retrofit.create(ApiService::class.java)
     }
+
+    fun reportApi(): ApiService {
+        val retrofit = Retrofit.Builder()
+            .baseUrl("http://34.136.214.191:5001/")
+            .client(client)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        return retrofit.create(ApiService::class.java)
+    }
 }

@@ -12,8 +12,8 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class NewsViewModel : ViewModel() {
-    private var _newsList = MutableLiveData<List<ArticlesItem?>>()
-    val newsList: LiveData<List<ArticlesItem?>> = _newsList
+    private var _newsList = MutableLiveData<List<ArticlesItem>>()
+    val newsList: LiveData<List<ArticlesItem>> = _newsList
 
     private var _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading

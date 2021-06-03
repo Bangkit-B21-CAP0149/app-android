@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="12dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <View
+        android:id="@+id/imgNewsItem"
+        android:layout_width="78dp"
+        android:layout_height="78dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <View
+        android:id="@+id/tvNewsTitle"
+        android:layout_width="0dp"
+        android:layout_height="24dp"
+        android:background="@android:color/darker_gray"
+        android:layout_marginStart="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/imgNewsItem"
+        app:layout_constraintTop_toTopOf="@id/imgNewsItem"/>
+
+    <View
+        android:background="@android:color/darker_gray"
+        android:id="@+id/tvNewsDate"
+        android:layout_width="100dp"
+        android:layout_height="12dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="@id/tvNewsTitle"
+        app:layout_constraintTop_toBottomOf="@id/tvNewsTitle"/>
+
+    <View
+        android:id="@+id/tvNewsDesc"
+        android:layout_width="0dp"
+        android:background="@android:color/darker_gray"
+        android:layout_height="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgNewsItem"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

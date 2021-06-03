@@ -7,13 +7,18 @@ import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import com.arjuna.capstoneproject.R
 import com.arjuna.capstoneproject.databinding.ActivityRegisterBinding
+import com.arjuna.capstoneproject.utils.Status
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.UserProfileChangeRequest
 import com.jakewharton.rxbinding2.widget.RxTextView
 import io.reactivex.Observable
 import io.reactivex.functions.Function3
+import io.reactivex.functions.Function4
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -21,10 +26,25 @@ class RegisterActivity : AppCompatActivity() {
         ActivityRegisterBinding.inflate(layoutInflater)
     }
 
+    private val viewModel: RegisterViewModel by viewModels()
+
     @SuppressLint("CheckResult")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+        supportActionBar?.title = "Register"
+
+        observeLoading()
+
+        val nameStream = RxTextView.textChanges(binding.edtName)
+            .skipInitialValue()
+            .map { name ->
+                name.isEmpty()
+            }
+        nameStream.subscribe {
+            showNameAlert(it)
+        }
 
         val emailStream = RxTextView.textChanges(binding.edtEmail)
             .skipInitialValue()
@@ -60,11 +80,12 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         val invalidFieldsStream = Observable.combineLatest(
+            nameStream,
             emailStream,
             passwordStream,
             passwordConfirmationStream,
-            Function3 { emailInvalid: Boolean, passwordInvalid: Boolean, passwordConfirmationInvalid: Boolean ->
-                !emailInvalid && !passwordInvalid && !passwordConfirmationInvalid
+            Function4 { nameEmpty: Boolean, emailInvalid: Boolean, passwordInvalid: Boolean, passwordConfirmationInvalid: Boolean ->
+                !nameEmpty && !emailInvalid && !passwordInvalid && !passwordConfirmationInvalid
             }
         )
         invalidFieldsStream.subscribe { isValid ->
@@ -83,22 +104,38 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun signUpFlow() {
-        val firebaseAuth = FirebaseAuth.getInstance()
-
+        val name = binding.edtName.text.toString()
         val email = binding.edtEmail.text.toString()
         val password = binding.edtPassword.text.toString()
 
-        firebaseAuth.createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener(this) {
-                if (it.isSuccessful) {
-                    Log.d("SignUpWithEmail", "createUserWithEmail: success")
-                    val intent = Intent(this, LoginActivity::class.java)
-                    startActivity(intent)
-                } else {
-                    Log.w("SignUpWithEmail", "createUserWithEmail: failed")
-                    Toast.makeText(baseContext, "Failed", Toast.LENGTH_SHORT).show()
+        viewModel.registerWithEmail(name, email, password)
+        observeRegisterWithEmail()
+    }
+
+    private fun observeRegisterWithEmail() {
+        viewModel.registerStatus.observe(this, { status ->
+            status?.let {
+                when(it) {
+                    is Status.Success -> {
+                        val intent = Intent(this, LoginActivity::class.java)
+                        startActivity(intent)
+                    }
+                    is Status.Failure -> {
+                        Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
+        })
+    }
+
+    private fun observeLoading() {
+        viewModel.isLoading.observe(this, {
+            binding.btnRegister.text = if (it) "Authenticating..." else "Register"
+        })
+    }
+
+    private fun showNameAlert(isEmpty: Boolean) {
+        binding.edtEmail.error = if (isEmpty) "Nama tidak boleh kosong!" else null
     }
 
     private fun showEmailAlert(isNotValid: Boolean) {

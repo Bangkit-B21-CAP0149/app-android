@@ -41,7 +41,14 @@ class NewsFragment : Fragment() {
         })
 
         viewModel.isLoading.observe(viewLifecycleOwner, {
-            binding.progressBar.visibility = if (it) View.VISIBLE else View.GONE
+            if (it) {
+                binding.shimmerLayout.startShimmerAnimation()
+                binding.rvNews.visibility = View.GONE
+            } else {
+                binding.shimmerLayout.stopShimmerAnimation()
+                binding.rvNews.visibility = View.VISIBLE
+            }
+            binding.shimmerLayout.visibility = if (it) View.VISIBLE else View.GONE
         })
     }
 }

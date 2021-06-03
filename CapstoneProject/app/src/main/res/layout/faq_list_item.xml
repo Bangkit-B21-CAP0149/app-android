@@ -4,9 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="5dp"
-    android:layout_marginBottom="5dp"
     app:cardCornerRadius="20dp"
+    app:cardUseCompatPadding="true"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
@@ -18,7 +17,6 @@
         android:layout_height="wrap_content"
         android:background="@color/cardview_light_background"
         android:padding="8dp">
-
 
         <TextView
             android:id="@+id/tv_question"
@@ -32,7 +30,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Data Name" />
-
 
         <TextView
             android:id="@+id/tv_answer"
@@ -49,7 +46,5 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_question"
             app:layout_constraintVertical_bias="0.104"
             tools:text="Description" />
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

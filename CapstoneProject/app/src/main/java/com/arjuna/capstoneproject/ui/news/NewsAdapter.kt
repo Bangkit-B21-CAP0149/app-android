@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import coil.transform.RoundedCornersTransformation
 import com.arjuna.capstoneproject.data.remote.ArticlesItem
 import com.arjuna.capstoneproject.databinding.NewsListItemBinding
 
@@ -17,7 +18,9 @@ class NewsAdapter(private val news: List<ArticlesItem?>) :
                 tvNewsTitle.text = news.title
                 tvNewsDate.text = news.publishedAt
                 tvNewsDesc.text = news.description
-                imgNewsItem.load(news.urlToImage)
+                imgNewsItem.load(news.urlToImage) {
+                    transformations(RoundedCornersTransformation(18f))
+                }
             }
         }
     }

@@ -9,8 +9,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="18dp"
-        android:background="#F2F4F4">
+        android:background="#F2F4F4"
+        android:paddingBottom="18dp">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cvAlert"
@@ -76,6 +76,7 @@
                     android:id="@+id/edtKtp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="number"
                     android:fontFamily="@font/poppins"
                     android:textColor="#49494A" />
             </LinearLayout>
@@ -138,41 +139,63 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_medium"
-                    android:text="Jenis Kekerasan"
+                    android:text="Violence Type"
                     android:textColor="#49494A"
                     android:textSize="16sp" />
 
                 <RadioGroup
+                    android:id="@+id/rgType"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp">
 
                     <RadioButton
+                        android:id="@+id/rbPhysical"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:background="@drawable/rb_selector"
+                        android:button="@null"
                         android:fontFamily="@font/poppins_medium"
                         android:text="Kekerasan Fisik"
-                        android:textColor="#49494A" />
+                        android:textAlignment="center"
+                        android:textColor="@color/rb_text_color" />
 
                     <RadioButton
+                        android:id="@+id/rbPsychological"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:background="@drawable/rb_selector"
+                        android:button="@null"
                         android:fontFamily="@font/poppins_medium"
                         android:text="Kekerasan Psikis"
-                        android:textColor="#49494A" />
+                        android:textAlignment="center"
+                        android:textColor="@color/rb_text_color" />
 
                     <RadioButton
+                        android:id="@+id/rbEmotional"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:background="@drawable/rb_selector"
+                        android:button="@null"
                         android:fontFamily="@font/poppins_medium"
                         android:text="Kekerasan Seksual"
-                        android:textColor="#49494A" />
+                        android:textAlignment="center"
+                        android:textColor="@color/rb_text_color" />
 
                     <RadioButton
+                        android:id="@+id/rbSexual"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:background="@drawable/rb_selector"
+                        android:button="@null"
                         android:fontFamily="@font/poppins_medium"
                         android:text="Kekerasan Emosional"
-                        android:textColor="#49494A" />
+                        android:textAlignment="center"
+                        android:textColor="@color/rb_text_color" />
                 </RadioGroup>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -203,29 +226,46 @@
                     android:textSize="16sp" />
 
                 <RadioGroup
+                    android:id="@+id/rgRelation"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp">
 
                     <RadioButton
+                        android:id="@+id/rbFamily"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:background="@drawable/rb_selector"
+                        android:button="@null"
                         android:fontFamily="@font/poppins_medium"
                         android:text="Family"
-                        android:textColor="#49494A" />
+                        android:textAlignment="center"
+                        android:textColor="@color/rb_text_color" />
 
                     <RadioButton
+                        android:id="@+id/rbStranger"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:background="@drawable/rb_selector"
+                        android:button="@null"
                         android:fontFamily="@font/poppins_medium"
                         android:text="Stranger"
-                        android:textColor="#49494A" />
+                        android:textAlignment="center"
+                        android:textColor="@color/rb_text_color" />
 
                     <RadioButton
+                        android:id="@+id/rbAcquaintance"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:background="@drawable/rb_selector"
+                        android:button="@null"
                         android:fontFamily="@font/poppins_medium"
                         android:text="Acquaintance"
-                        android:textColor="#49494A" />
+                        android:textAlignment="center"
+                        android:textColor="@color/rb_text_color" />
                 </RadioGroup>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -256,43 +296,70 @@
                     android:textSize="16sp" />
 
                 <RadioGroup
+                    android:id="@+id/rgAggressorAge"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp">
 
                     <RadioButton
+                        android:id="@+id/rb16Years"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:background="@drawable/rb_selector"
+                        android:button="@null"
                         android:fontFamily="@font/poppins_medium"
                         android:text="&lt;16 years"
-                        android:textColor="#49494A" />
+                        android:textAlignment="center"
+                        android:textColor="@color/rb_text_color" />
 
                     <RadioButton
+                        android:id="@+id/rb17Years"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:background="@drawable/rb_selector"
+                        android:button="@null"
                         android:fontFamily="@font/poppins_medium"
                         android:text="16-17 years"
-                        android:textColor="#49494A" />
+                        android:textAlignment="center"
+                        android:textColor="@color/rb_text_color" />
 
                     <RadioButton
+                        android:id="@+id/rb20Years"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:background="@drawable/rb_selector"
+                        android:button="@null"
                         android:fontFamily="@font/poppins_medium"
                         android:text="18-20 years"
-                        android:textColor="#49494A" />
+                        android:textAlignment="center"
+                        android:textColor="@color/rb_text_color" />
 
                     <RadioButton
+                        android:id="@+id/rb30Years"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:background="@drawable/rb_selector"
+                        android:button="@null"
                         android:fontFamily="@font/poppins_medium"
                         android:text="21-30 years"
-                        android:textColor="#49494A" />
+                        android:textAlignment="center"
+                        android:textColor="@color/rb_text_color" />
 
                     <RadioButton
+                        android:id="@+id/rb40Years"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:background="@drawable/rb_selector"
+                        android:button="@null"
                         android:fontFamily="@font/poppins_medium"
                         android:text="31-40 years"
-                        android:textColor="#49494A" />
+                        android:textAlignment="center"
+                        android:textColor="@color/rb_text_color" />
                 </RadioGroup>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -323,25 +390,39 @@
                     android:textSize="16sp" />
 
                 <RadioGroup
+                    android:id="@+id/rgPrevReport"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
                     android:orientation="horizontal">
 
                     <RadioButton
+                        android:id="@+id/rbPrevReportYes"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="4dp"
+                        android:layout_marginBottom="4dp"
                         android:layout_weight="1"
+                        android:background="@drawable/rb_selector"
+                        android:button="@null"
                         android:fontFamily="@font/poppins_medium"
                         android:text="Yes"
-                        android:textColor="#49494A" />
+                        android:textAlignment="center"
+                        android:textColor="@color/rb_text_color" />
 
                     <RadioButton
+                        android:id="@+id/rbPrevReportNo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginBottom="4dp"
                         android:layout_weight="1"
+                        android:background="@drawable/rb_selector"
+                        android:button="@null"
                         android:fontFamily="@font/poppins_medium"
                         android:text="No"
-                        android:textColor="#49494A" />
+                        android:textAlignment="center"
+                        android:textColor="@color/rb_text_color" />
                 </RadioGroup>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -372,25 +453,39 @@
                     android:textSize="16sp" />
 
                 <RadioGroup
+                    android:id="@+id/rgLivingTogether"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
                     android:orientation="horizontal">
 
                     <RadioButton
+                        android:id="@+id/rbLivingTogetherYes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="4dp"
+                        android:layout_marginBottom="4dp"
                         android:layout_weight="1"
+                        android:background="@drawable/rb_selector"
+                        android:button="@null"
                         android:fontFamily="@font/poppins_medium"
                         android:text="Yes"
-                        android:textColor="#49494A" />
+                        android:textAlignment="center"
+                        android:textColor="@color/rb_text_color" />
 
                     <RadioButton
+                        android:id="@+id/rbLivingTogetherNo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginBottom="4dp"
                         android:layout_weight="1"
+                        android:background="@drawable/rb_selector"
+                        android:button="@null"
                         android:fontFamily="@font/poppins_medium"
                         android:text="No"
-                        android:textColor="#49494A" />
+                        android:textAlignment="center"
+                        android:textColor="@color/rb_text_color" />
                 </RadioGroup>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -416,12 +511,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_medium"
-                    android:text="Kronologi singkat"
+                    android:text="Short Chronology"
                     android:textColor="#49494A"
                     android:textSize="16sp" />
 
                 <EditText
-                    android:id="@+id/editTextTextMultiLine"
+                    android:id="@+id/edtShortChronology"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
                     android:fontFamily="@font/poppins"
@@ -431,14 +526,17 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnSubmit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_medium"
-            android:text="Kirim Laporan"
             android:layout_marginStart="12dp"
             android:layout_marginEnd="12dp"
+            android:background="@drawable/rb_active_bg"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Kirim Laporan"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
             android:textSize="16sp"
             app:layout_constraintTop_toBottomOf="@id/cvChronology" />
     </androidx.constraintlayout.widget.ConstraintLayout>
